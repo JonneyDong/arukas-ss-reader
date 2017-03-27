@@ -7,7 +7,7 @@ app.engine('.html', require('ejs').__express);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 var args = process.argv.slice(2);
-var email = '',pwd = '',token = '',secret = '', amdPwd = '';
+var email = '',pwd = '',token = '',secret = '',amdPwd = '';
 if(args[0].indexOf('@') > -1)
 {
     email   =   args[0];
@@ -20,7 +20,6 @@ if(args[0].indexOf('@') > -1)
 
 
 appid   =   args[2] || 'all',
-//管理密码
 amdPwd  =   args[3] || 'jonney',
 images  =   ["malaohu/ssr-with-net-speeder","lowid/ss-with-net-speeder","smounives/shadowsocksr-docker"];
 
@@ -33,6 +32,13 @@ app.get('/', function(req, res) {
             res.render('./index.html',{"data":data || []});
     });
 });
+
+app.get('/pwd', function(req, res){
+    var pwd = req.params.pwd;
+    res.send('params:' + pwd+'  amdPwd:'+amdPwd);
+});
+
+
 
 function getit_by_token(appid,callback)
 {
