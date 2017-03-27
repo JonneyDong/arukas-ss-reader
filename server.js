@@ -26,19 +26,12 @@ images  =   ["malaohu/ssr-with-net-speeder","lowid/ss-with-net-speeder","smouniv
 
 
 app.get('/', function(req, res) {
-    var pwd = req.query.pwd;
-    if(pwd == amdPwd)
-    {
-        getit(appid,function(err,data){   
-            if(err || !data)
-                res.send('没有查询到数据。请检查node启动参数是否正确。');
-            else    
-                res.render('./index.html',{"data":data || []});
-        })
-    }else{
-        res.send('no author.');
-    }
-
+    getit(appid,function(err,data){   
+        if(err || !data)
+            res.send('没有查询到数据。请检查node启动参数是否正确。');
+        else    
+            res.render('./index.html',{"data":data || []});
+    });
 });
 
 function getit_by_token(appid,callback)
