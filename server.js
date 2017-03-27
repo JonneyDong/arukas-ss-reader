@@ -36,7 +36,7 @@ app.get('/', function(req, res) {
                 res.render('./index.html',{"data":data || []});
         })
     }else{
-        res.writeHead('808');
+        res.send('no author.');
     }
 
 });
