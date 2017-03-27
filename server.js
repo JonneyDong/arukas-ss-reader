@@ -20,8 +20,8 @@ if(args[0].indexOf('@') > -1)
 
 
 appid   =   args[2] || 'all',
-amdPwd  =   args[3] || 'jonney',
 images  =   ["malaohu/ssr-with-net-speeder","lowid/ss-with-net-speeder","smounives/shadowsocksr-docker"];
+amdPwd  =   args[3] || 'jonney';
 
 
 app.get('/', function(req, res) {
@@ -141,5 +141,12 @@ app.get('/i', function (req, res) {
 })
 
 app.listen(3999, function () {
-  console.log('Example app listening on port 3999')
+    console.log('amdPwd:' + amdPwd);
+    console.log('Example app listening on port 3999');
+    getit(appid,function(err,data){
+        if(err || !data)
+            console.log('没有查询到数据。请检查node启动参数是否正确。');
+        else    
+            console.log({"data":data || []});
+    });
 })
